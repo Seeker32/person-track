@@ -1,0 +1,10 @@
+[project]
+name = "person-track"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "supervision>=0.28.0",
+    "trackers>=2.4.0",
+]
