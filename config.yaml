@@ -1,0 +1,40 @@
+# Person Tracking Configuration
+# ==============================
+
+cameras:
+  - name: webcam
+    source: 0  # Integer for webcam index, string for RTSP URL (e.g., "rtsp://user:pass@192.168.1.100:554/stream1")
+
+detection:
+  model_path: "models/yolo26n.pt"
+  conf_threshold: 0.5        # Minimum confidence for detections
+  iou_threshold: 0.7          # NMS IoU threshold
+  device: "cuda:0"               # "cpu" or "cuda:0"
+  classes: [0]                # COCO: 0 = person
+
+tracking:
+  lost_track_buffer: 30
+  frame_rate: 30.0
+  track_activation_threshold: 0.7
+  minimum_consecutive_frames: 2
+  minimum_iou_threshold_first_assoc: 0.2
+  minimum_iou_threshold_second_assoc: 0.5
+  minimum_iou_threshold_unconfirmed_assoc: 0.3
+  high_conf_det_threshold: 0.6
+  enable_cmc: true
+  cmc_method: "sparseOptFlow"   # "sparseOptFlow", "orb", "sift", "ecc"
+  cmc_downscale: 2
+
+visualization:
+  display: true
+  display_width: 1280
+  display_height: 720
+  show_traces: true
+  trace_length: 60
+  box_thickness: 2
+  label_text_scale: 0.6
+  label_text_thickness: 1
+
+output:
+  save_video: false
+  video_output_path: "output/tracked.mp4"
